@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block titulo %} PAGINA PARA EDITAR {% endblock %}
+
+{% block contenido %}
+
+{% include 'app/menu.html' %}
+
+
+
+<div class="container">
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h1>Ver Tarea</h1>
+    
+            {% for job in usuario.jobs.all %}
+
+                <h3> {job} </h3>
+
+            {% endfor %}
+
+            
+        </div>
+    </div>
+    
+    </div>
+
+{% endblock %}

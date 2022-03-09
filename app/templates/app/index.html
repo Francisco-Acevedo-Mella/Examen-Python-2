@@ -1,0 +1,101 @@
+{% extends 'app/base.html' %}
+
+{% block titulo %} Ayudante de Tareas diarias {% endblock %}
+
+{% block contenido %}
+
+{% include 'app/menu.html' %}
+
+
+
+<div class="container">
+    <div class="row mt-5">
+
+
+
+        <div class="col-md-6">
+                <h1 class="mb-10 mt-10">Mis Tareas</h1>
+        
+                <hr/>
+                <div class="col-8">
+                    <div>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Tarea</th>
+                                <th>Accion</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                
+                                {% for tarea in tareas %}
+                                
+                                
+                                    <tr>
+                                        <td>{{tarea.usuario_job.first_name}}</td>
+                                        <td>{{tarea.title}}</td>
+                                        <td>
+                                            {% if request.session.usuario.id == tarea.usuario_job.id %}
+                                            <a href="/tarea/done/{{tarea.id}}" class="card-link">Eliminar</a>
+                                            <a href="/tarea/edit/{{tarea.id}}" class="card-link">Editar</a>
+                                            <a href="/tarea/ver/{{tarea.id}}" class="card-link">Ver</a>
+                                        </td>
+                                            {% endif %}
+                                    </tr>
+                                {% endfor %}    
+        
+                            </tbody>
+                        </table>
+        
+                    </div>
+                </div>
+                
+        </div>
+
+        
+        <div class="col-md-6">
+            <h1 class="mb-10 mt-10">Tareas Diarias</h1>
+            <hr/>
+            <div class="col-15">
+                <div>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Tarea</th>
+                            <th>Descripcion</th>
+                            <th>Lugar</th>
+                            <th>Accion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for tarea in tareas %}
+                                <tr>
+                                    <td>{{tarea.title}}</td>
+                                    <td>{{tarea.desc}}</td>
+                                    <td>{{tarea.location}}</td>
+                                    <td><a href="#" class="card-link">Ver</a><a href="#" class="card-link">Agregar</a>
+                                        <a href="#" class="card-link">Editar</a><a href="#" class="card-link">Eliminar</a>
+                                    </td>
+
+                            {% endfor %}    
+    
+                        </tbody>
+                    </table>
+    
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+</div>
+
+{% endblock %}
